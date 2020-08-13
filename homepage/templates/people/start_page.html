@@ -8,5 +8,6 @@
         <p>
             {{ person.phone_number }}
         </p>
+        <a href="{{ person.get_absolute_url }}">link</a>
     {% endfor %}
 {% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %} {{ people.fullname }} {% endblock %}
+{% block content %}
+    <a href="{% url "homepage:start_page" %}">Start page</a>
+    <h1>Detail information </h1>
+    <h2>{{ people.fullname }}</h2>
+    <p>
+        {{ people.phone_number }}<br>
+        {{ people.email }}<br>
+        {{ people.price }}
+    </p>
+{% endblock %}
