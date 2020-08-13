@@ -2,12 +2,15 @@
 
 {% block title %} START PAGE {% endblock %}
 {% block content %}
-    <h1>Главная</h1>
-    {% for person in people %}
-        <h2>{{ person.fullname }}</h2>
-        <p>
-            {{ person.phone_number }}
-        </p>
-        <a href="{{ person.get_absolute_url }}">link</a>
-    {% endfor %}
+    <a href="#">Главная</a><br>
+    <a href="#">Обучение</a><br>
+    <a href="#">Новости</a><br>
+    <a href="#">О проекте</a><br>
+    {% if request.user.is_authenticated %}
+        Hi {{ request.user.username }} /
+        <a href="{% url "homepage:logout" %}">logout</a><br>
+    {% else %}
+        <a href="{% url 'homepage:login' %}">Вход</a>/<a href="#">Регистрация</a><br>
+    {% endif %}
+    <a href="{% url 'homepage:find_master' %}">Поиск мастера</a><br>
 {% endblock %}

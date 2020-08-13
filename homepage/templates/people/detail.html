@@ -2,8 +2,8 @@
 
 {% block title %} {{ people.fullname }} {% endblock %}
 {% block content %}
-    <a href="{% url "homepage:start_page" %}">Start page</a>
-    <h1>Detail information </h1>
+    <a href="{% url "homepage:start_page" %}">Главная</a><br>
+    <a href="{% url "homepage:find_master" %}">Вернуться к поиску</a>
     <h2>{{ people.fullname }}</h2>
     <p>
         {{ people.phone_number }}<br>

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %} START PAGE {% endblock %}
+{% block content %}
+    <a href="{% url "homepage:start_page" %}">Главная</a><br>
+    {% for person in people %}
+        <h2>{{ person.fullname }}</h2>
+        <p>
+            {{ person.phone_number }}
+        </p>
+        <a href="{{ person.get_absolute_url }}">Подробнее</a>
+    {% endfor %}
+{% endblock %}
