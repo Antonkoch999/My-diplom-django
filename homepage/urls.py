@@ -6,7 +6,7 @@ app_name = 'homepage'
 
 urlpatterns = [
     path('find_master/', views.find_master, name='find_master'),
-    path('<int:id_>/<str:fullname>/',
+    path('<int:id_>/<str:district>/',
          views.people_details,
          name='people_details'),
     path('', views.start_page, name='start_page'),

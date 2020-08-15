@@ -1,13 +1,27 @@
 {% extends "base.html" %}
 
-{% block title %} {{ people.fullname }} {% endblock %}
+{% block title %} {{ profile.fullname }} {% endblock %}
 {% block content %}
     <a href="{% url "homepage:start_page" %}">Главная</a><br>
     <a href="{% url "homepage:find_master" %}">Вернуться к поиску</a>
-    <h2>{{ people.fullname }}</h2>
+    <h2>{{ profile.fullname }}</h2>
     <p>
-        {{ people.phone_number }}<br>
-        {{ people.email }}<br>
-        {{ people.price }}
+        {{ profile.phone_number }}<br>
+        {{ profile.email }}<br>
+        {{ profile.price }}
     </p>
+    {% with profile.comments.count as total_comments %}
+        <h3>{{ total_comments }} comment{{ total_comments|pluralize }}</h3>
+    {% endwith %}
+    {% for comment in profile.comments.all %}
+        <p>
+        Comment №{{ forloop.counter }}: by {{ comment.name }}{{ comment.created }}<br>
+        {{ comment.body }}
+        </p>
+    {% endfor %}
+    <form action="." method="post">
+        {{ comment_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Add comment"></p>
+    </form>
 {% endblock %}
