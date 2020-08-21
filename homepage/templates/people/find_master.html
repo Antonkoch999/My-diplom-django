@@ -2,12 +2,49 @@
 
 {% block title %} START PAGE {% endblock %}
 {% block content %}
-    <a href="{% url "homepage:start_page" %}">Главная</a><br>
-    {% for person in people %}
-        <h2>{{ person.fullname }}</h2>
-        <p>
-            {{ person.phone_number }}
-        </p>
-        <a href="{{ person.get_absolute_url }}">Подробнее</a>
-    {% endfor %}
+{#    <div class="card" style="width: 18rem;">#}
+{#        {% for person in people %}#}
+{#          <img src="{{ person.photo.url }}" class="card-img-top" alt="Загрузка фото">#}
+{#          <div class="card-body">#}
+{#            <h5 class="card-title">{{ person.first_name|add:person.last_name }}</h5>#}
+{#            <p class="card-text">{{ person.price }}<br>#}
+{#                    {{ person.name_organization }}<br>#}
+{#                    {{ person.address }}<br></p>#}
+{#            <a href="{{ person.get_absolute_url }}" class="btn btn-primary">Подробнее</a>#}
+{#          </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+<form class="form-inline mt-2 mt-md-0" style="margin-left: 625px; margin-bottom: 20px; padding-top: 40px; padding-bottom: 0%">
+    <input class="form-control mr-sm-2" type="text" placeholder="Поиск:" name="search">
+    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Поиск</button>
+</form>
+<div class="row row-cols-1 row-cols-md-2" style="margin-left: 100px; margin-right: 100px">
+{% for person in people %}
+  <div class="col mb-4">
+    <div class="card mb-4 shadow-sm">
+      <img src="{{ person.photo.url }}" class="card-img-top" alt="Загрузка фото">
+      <div class="card-body" >
+        <h5 class="card-title">{{ person.first_name}} {{person.last_name }}</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Цена: {{ person.price }}</li>
+            <li class="list-group-item">Организация: {{ person.name_organization }}</li>
+            <li class="list-group-item">Адрес: {{ person.address }}</li>
+            <li class="list-group-item"><a href="{{ person.get_absolute_url }}" class="btn btn-outline-primary">Подробнее</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+{#    <a href="{% url "homepage:start_page" %}">Главная</a><br>#}
+{#    {% for person in people %}#}
+{#        <h2>{{ person.first_name|add:person.last_name }}</h2>#}
+{#        <p>#}
+{#            {{ person.price }}<br>#}
+{#            {{ person.name_organization }}<br>#}
+{#            {{ person.address }}<br>#}
+{#        </p>#}
+{#        <a href="{{ person.get_absolute_url }}">Подробнее</a>#}
+{#    {% endfor %}#}
 {% endblock %}

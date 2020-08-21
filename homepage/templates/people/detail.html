@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %} {{ profile.fullname }} {% endblock %}
+{% block title %} {{ profile.first_name|add:profile.last_name }} {% endblock %}
 {% block content %}
     <a href="{% url "homepage:start_page" %}">Главная</a><br>
     <a href="{% url "homepage:find_master" %}">Вернуться к поиску</a>
-    <h2>{{ profile.fullname }}</h2>
+    <h2>{{ profile.first_name|add:profile.last_name }}</h2>
     <p>
-        {{ profile.phone_number }}<br>
-        {{ profile.email }}<br>
+        {{ profile.name_organization }}<br>
+        {{ profile.contact_details }}<br>
         {{ profile.price }}
     </p>
     {% with profile.comments.count as total_comments %}

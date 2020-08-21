@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %} Create Profile {% endblock %}
+{% block content %}
+    <h1>Создание профиля</h1>
+    <a href="{% url "homepage:start_page" %}">Главная</a><br>
+    <form action="." method="post" enctype="multipart/form-data">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="Create profile">
+    </form>
+
+{% endblock %}
