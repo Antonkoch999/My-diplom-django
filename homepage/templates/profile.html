@@ -3,20 +3,47 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-    <a href="{% url "homepage:start_page" %}">Главная</a><br>
-    <p>Дата рождения: {{ user.profileuser.date_of_birth }}</p>
-    <p>Имя и фамилия:{{ user.profileuser.first_name }} {{ user.profileuser.last_name }}</p>
-    <p>Название организации: {{ user.profileuser.name_organization }}</p>
-    <p>Вид услуги: {{ user.profileuser.type_service }}</p>
-    <p>Цена: {{ user.profileuser.price }}</p>
-    <p>Адрес оказания услуг: {{ user.profileuser.address }}</p>
-    <p>Ссылка инстаграмм: {{ user.profileuser.link_to_instagram }}</p>
-    <p>Контактные данные: {{ user.profileuser.contact_details }}</p>
-    {% if user.profileuser.photo %}
-        <p><img src="{{ user.profileuser.photo.url }}" alt="alt text"></p>
-    {% else %}
-        <p>Not Photo</p>
-    {% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col-3 pt-5">
+                {% if user.profileuser.photo %}
+                    <p><img src="{{ user.profileuser.photo.url }}" alt="alt text" width="250" height="250" class="round"></p>
+                {% else %}
+                    <p>Not Photo</p>
+                 {% endif %}
+                <p><a href="{% url "homepage:edit" %}">Редактировать профиль</a></p>
+            </div>
+            <div class="col-9 pt-5">
+                <p>Имя и фамилия:{{ user.profileuser.first_name }} {{ user.profileuser.last_name }}</p>
+                <p>Название организации: {{ user.profileuser.name_organization }}</p>
+                <p>Вид услуги: {{ user.profileuser.type_service }}</p>
+                <p>Цена: {{ user.profileuser.price }}</p>
+                <p>Адрес оказания услуг: {{ user.profileuser.address }}</p>
+                <p>Ссылка инстаграмм: {{ user.profileuser.link_to_instagram }}</p>
+                <p>Контактные данные: {{ user.profileuser.contact_details }}</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{#    <a href="{% url "homepage:start_page" %}">Главная</a><br>#}
+{#    <p>Дата рождения: {{ user.profileuser.date_of_birth }}</p>#}
+{#    <p>Имя и фамилия:{{ user.profileuser.first_name }} {{ user.profileuser.last_name }}</p>#}
+{#    <p>Название организации: {{ user.profileuser.name_organization }}</p>#}
+{#    <p>Вид услуги: {{ user.profileuser.type_service }}</p>#}
+{#    <p>Цена: {{ user.profileuser.price }}</p>#}
+{#    <p>Адрес оказания услуг: {{ user.profileuser.address }}</p>#}
+{#    <p>Ссылка инстаграмм: {{ user.profileuser.link_to_instagram }}</p>#}
+{#    <p>Контактные данные: {{ user.profileuser.contact_details }}</p>#}
+{#    {% if user.profileuser.photo %}#}
+{#        <p><img src="{{ user.profileuser.photo.url }}" alt="alt text"></p>#}
+{#    {% else %}#}
+{#        <p>Not Photo</p>#}
+{#    {% endif %}#}
 {#    <p><img src="{{ user.profileuser.photo.url }}" alt="alt text"></p>#}
 {#    <a href="{% url "homepage:edit" %}">Edit profile</a>#}
 {#    <a href="{% url "homepage:create_profile" %}">Create profile</a>#}

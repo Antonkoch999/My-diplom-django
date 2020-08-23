@@ -18,8 +18,8 @@
     <a class="p-2 text-dark" href="#">О проекте</a>
   </nav>
     {% if request.user.is_authenticated %}
-        <a class="m-1" href="{% url "homepage:logout" %}">Выйти</a><br>
         <a href="{% url "homepage:profile" %}">Профиль</a><br>
+        <a class="m-1" href="{% url "homepage:logout" %}">Выйти</a><br>
     {% else %}
         <a class="btn btn-outline-primary p-1 m-1" href="{% url 'homepage:login' %}">Вход</a>
         <a class="btn btn-outline-primary p-1" href="{% url 'homepage:register' %}">Регистрация</a><br>

@@ -2,26 +2,100 @@
 
 {% block title %} {{ profile.first_name|add:profile.last_name }} {% endblock %}
 {% block content %}
-    <a href="{% url "homepage:start_page" %}">Главная</a><br>
-    <a href="{% url "homepage:find_master" %}">Вернуться к поиску</a>
-    <h2>{{ profile.first_name|add:profile.last_name }}</h2>
-    <p>
-        {{ profile.name_organization }}<br>
-        {{ profile.contact_details }}<br>
-        {{ profile.price }}
-    </p>
-    {% with profile.comments.count as total_comments %}
-        <h3>{{ total_comments }} comment{{ total_comments|pluralize }}</h3>
-    {% endwith %}
-    {% for comment in profile.comments.all %}
-        <p>
-        Comment №{{ forloop.counter }}: by {{ comment.name }}{{ comment.created }}<br>
-        {{ comment.body }}
-        </p>
-    {% endfor %}
-    <form action="." method="post">
-        {{ comment_form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Add comment"></p>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-3 pt-5">
+            {% if profile.photo %}
+                <p><img src="{{ profile.photo.url }}" alt="alt text" width="250" height="250" class="round"></p>
+            {% else %}
+                <p>Not Photo</p>
+             {% endif %}
+        </div>
+        <div class="col-4 pt-5">
+            <p>Имя и фамилия:{{ profile.first_name }} {{ profile.last_name }}</p>
+            <p>Название организации: {{ profile.name_organization }}</p>
+            <p>Вид услуги: {{ profile.type_service }}</p>
+            <p>Цена: {{ profile.price }}</p>
+            <p>Адрес оказания услуг: {{ profile.address }}</p>
+            <p>Ссылка инстаграмм: {{ profile.link_to_instagram}}</p>
+            <p>Контактные данные: {{ profile.contact_details}}</p>
+            <p>{{ average }}/5</p>
+        </div>
+        <div class="col-5 pt-5">
+            <form action="." method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="container">
+                    <p>Оставить комментарий</p>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <p><label for='{{ comment_form.name }}'></label>
+                                <input type="text" class="form-control"  placeholder="Name" name="name"/></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <p><label for='{{ comment_form.email }}'></label>
+                                <input type="email" class="form-control"  placeholder="Email" name="email"/></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <p><label for='{{ comment_form.body }}'></label>
+                            <input type="text" class="form-control" style="height: 100px" placeholder="Comment" name="body"/></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <p class="font-weight-bold" style="width: 102px;">Ваша оценка</p>
+                        </div>
+                        <div class="rating-area col-10" style="margin-top: -5px;">
+                            <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
+                            <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
+                            <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
+                            <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
+                            <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
+                        </div>
+                    </div>
+                    <div class="text-center col-xs-12">
+                        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Отправиль комментарий" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr>
+{% with profile.comments.count as total_comments %}
+<h3 class="title-comments" style="margin-left: 40px;">{{ total_comments }} комментариев</h3><hr>
+{% endwith %}
+<div class="container">
+    <div class="row">
+        {% for comment in profile.comments.all %}
+        <div class="col-6">
+            <ul class="media-list">
+                <li class="media">
+                    <div class="media-body">
+                        <div class="media-heading">
+                            <div class="author">{{ comment.name }}</div>
+                            <div class="metadata">
+                                <span class="date">{{ comment.created }}</span>
+                            </div>
+                        </div>
+                        <div class="media-text text-justify">{{ comment.body }}</div>
+                        <div class="media-text text-justify">
+                            {% if comment.rating == None %}
+                            <p>Оценки нет</p>
+                            {% else %}
+                            <p>Оценка: {{ comment.rating }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </li>
+            </ul><hr>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

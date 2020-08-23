@@ -3,12 +3,86 @@
 {% block title %}Edit your account{% endblock %}
 
 {% block content %}
-    <h1>Edit your account</h1>
-    <p>You can edit your account using the following form:</p>
-    <form action="." method="post" enctype="multipart/form-data">
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Save changes"></p>
-    </form>
+<div class="container container-register">
+    <div class="row">
+        <div class="col-12" style="padding-left: 30%; padding-right: 30%;">
+            <h3 class="text-center">Редактирование профиля</h3>
+            <form action="." method="post" enctype="multipart/form-data"  style="margin-top:20px">
+                {% csrf_token %}
+                <div class="col-xs-12">
+                    <div class="form-group">
+                         <p><label for='{{ user_form.email }}'></label>
+                            <input type="email" class="form-control"  placeholder="email@email.com" name="email" value='{{ user.profileuser.user.email }}'/></p>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="custom-file pb-5">
+                            <p><label class="custom-file-label" for='{{ profile_form.photo }}'>Добавить файл</label>
+                            <input type="file" class="custom-file-input" accept="image/*" name="photo"/></p>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <p><label for='{{ profile_form.first_name }}'></label>
+                            <input type="text" class="form-control" placeholder="Введите имя" name="first_name" value='{{ user.profileuser.first_name }}'/></p>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <p><label for='{{ profile_form.last_name }}'></label>
+                            <input type="text" class="form-control" placeholder="Введите фамилию" name="last_name" value='{{ user.profileuser.last_name }}'/></p>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <p><label for='{{ profile_form.name_organization }}'></label>
+                            <input type="text" class="form-control" placeholder="Введите название организации" name="name_organization" value='{{ user.profileuser.name_organization }}'/></p>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <p><label for='{{ profile_form.type_service }}'></label>
+                            <input type="text" class="form-control" placeholder="Введите вид услуги" name="type_service" value='{{ user.profileuser.type_service }}'/></p>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <p><label for='{{ profile_form.price }}'></label>
+                            <input type="text" class="form-control" placeholder="Введите цену базового покрытия" name="price" value='{{ user.profileuser.price }}'/></p>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <p><label for='{{ profile_form.address }}'></label>
+                            <input type="text" class="form-control" placeholder="Введите адресс" name="address" value='{{ user.profileuser.address }}'/></p>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <p><label for='{{ profile_form.link_to_instagram }}'></label>
+                            <input type="url" class="form-control" placeholder="Добавьте ссылку instagram" name="link_to_instagram" value='{{ user.profileuser.link_to_instagram }}'/></p>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <p><label for='{{ profile_form.contact_details }}'></label>
+                            <input type="text" class="form-control" placeholder="Контактная информация" name="contact_details" value='{{ user.profileuser.contact_details }}'/></p>
+                    </div>
+                </div>
+
+                <div class="text-center col-xs-12">
+                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Сохранить изменения" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{#    <h1>Edit your account</h1>#}
+{#    <p>You can edit your account using the following form:</p>#}
+{#    <form action="." method="post" enctype="multipart/form-data">#}
+{#        {{ user_form.as_p }}#}
+{#        {{ profile_form.as_p }}#}
+{#        {% csrf_token %}#}
+{#        <p><input type="submit" value="Save changes"></p>#}
+{#    </form>#}
 {% endblock %}
