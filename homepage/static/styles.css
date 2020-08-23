@@ -5,6 +5,7 @@
 /*h2 {*/
 /*    color: red;*/
 /*}*/
+
 html, body{
     height: 100%;
     max-height: 100%;
@@ -15,7 +16,7 @@ html, body{
     height: 100%;
 }
 .bd-black{
-    background-color: papayawhip;
+    background-color: #FDD017;
 }
 .container-register{
     margin-top: 40px;
@@ -32,6 +33,26 @@ html, body{
     border: 3px; /* Параметры рамки */
     box-shadow: 0 0 7px #666; /* Параметры тени */
    }
+h2{
+    margin: 109px 0 60px ;
+    font-size: 65px;
+    line-height: 82px;
+    font-weight: 600;
+    text-align: center;
+    color: #fff;
+    font-family: "Montserrat",Helvetica,sans-serif;
+}
+.btn-start{
+    font-size: 38px;
+    color: #FDD017;
+}
+.btn-find{
+    color: #FDD017;
+}
+a{
+    color: #fdd017;
+}
+
 
 
 

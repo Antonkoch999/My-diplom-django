@@ -5,17 +5,10 @@
 {% block content %}
     <div class="general-container">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="font-italic text-primary">Наше приложение поможет вам найти подходящего мастера</h1>
+        <h2>Наше приложение поможет вам найти подходящего мастера</h2>
         <p class="lead">
-          <a class="btn btn-lg btn-outline-primary" href="{% url 'homepage:find_master' %}">Поиск мастера</a>
+          <a class="btn-start btn btn-outline-warning btn-lg " href="{% url 'homepage:find_master' %}">Поиск мастера</a>
         </p>
     </div>
     </div>
 {% endblock %}
-{#{% if request.user.is_authenticated %}#}
-{#        Hi {{ request.user.username }} /#}
-{#        <a  href="{% url "homepage:logout" %}">logout</a><br>#}
-{#        <a  href="{% url "homepage:profile" %}">Profile</a><br>#}
-{#    {% else %}#}
-{#        <a  href="{% url 'homepage:login' %}">Вход</a>/<a href="{% url 'homepage:register' %}">Регистрация</a><br>#}
-{#    {% endif %}#}
