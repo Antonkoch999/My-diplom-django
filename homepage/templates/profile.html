@@ -12,6 +12,7 @@
                 <p>Not Photo</p>
              {% endif %}
             <p><a href="{% url "homepage:edit" %}">Редактировать профиль</a></p>
+            <p><a href="{% url "homepage:password_change" %}">Изменение пароля</a></p>
         </div>
         <div class="col-9 pt-5">
             <p><b>Имя и фамилия:</b> {{ user.profileuser.first_name }} {{ user.profileuser.last_name }}</p>
