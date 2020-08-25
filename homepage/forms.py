@@ -51,3 +51,6 @@ class ProfileEditForm(forms.ModelForm):
         exclude = ['user']
 
 
+class ProfileFilterForm(forms.Form):
+    min_price = forms.IntegerField(required=False)
+    max_price = forms.IntegerField(required=False)
