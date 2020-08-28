@@ -22,7 +22,6 @@ class CommentForm(forms.ModelForm):
 
 
 class UserRegistrationForm(forms.ModelForm):
-    required_css_class = "field"
     password = forms.CharField(label='Password',
                                widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repeat password',

@@ -29,7 +29,9 @@ urlpatterns = [
          name='password_change'),
     path('password-change/done/', auth_views.PasswordChangeDoneView.as_view(),
          name='password_change_done'),
-
+    path('registration_confirmation/', views.registration_confirmation,
+         name='registration_confirmation'),
+    path('create_profile/', views.create_profile, name='create_profile'),
 ]
 
 if settings.DEBUG:

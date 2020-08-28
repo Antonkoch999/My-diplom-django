@@ -1,20 +1,19 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Profile{% endblock %}
-
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-3 pt-5">
+        <div class="col-xs-3 pt-5">
             {% if user.profileuser.photo %}
                 <p><img src="{{ user.profileuser.photo.url }}" alt="alt text" width="250" height="250" class="round"></p>
             {% else %}
-                <p>Not Photo</p>
+                <p><img src="{% static "img/static_avatar.png" %}" alt="alt text" width="250" height="250" class="round"/></p>
              {% endif %}
             <p><a href="{% url "homepage:edit" %}">Редактировать профиль</a></p>
             <p><a href="{% url "homepage:password_change" %}">Изменение пароля</a></p>
         </div>
-        <div class="col-9 pt-5">
+        <div class="col-xs-9 pt-5 pl-5">
             <p><b>Имя и фамилия:</b> {{ user.profileuser.first_name }} {{ user.profileuser.last_name }}</p>
             <p><b>Название организации:</b> {{ user.profileuser.name_organization }}</p>
             <p><b>Вид услуг:</b> {{ user.profileuser.type_service }}</p>
@@ -25,4 +24,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

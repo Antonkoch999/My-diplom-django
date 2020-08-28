@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %} START PAGE {% endblock %}
 {% block content %}
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -8,16 +8,16 @@
 
 <form class="form-inline mt-2 mt-md-0">
     <div class="container">
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-end">
+            <div class="col-8">
                 <input class="form-control mr-sm-2" type="text" placeholder="Поиск:" name="search">
                 <button class="btn-find btn btn-outline-warning my-2 my-sm-0" style="border-color: #ffc107;" type="submit">Поиск</button>
             </div>
-            <div class="col">
+            <div class="col-4">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <button class="dropdown-toggle btn-find btn btn-outline-warning my-2 my-sm-0" data-toggle="dropdown" style="border-color: #ffc107; margin-left: 167px;" type="button">Сортировать по цене</button>
-                        <div class="dropdown-menu" style="margin-left: 112px;">
+                        <button class="dropdown-toggle btn-find btn btn-outline-warning my-2 my-sm-0" data-toggle="dropdown" style="border-color: #ffc107;" type="button">Сортировать по цене</button>
+                        <div class="dropdown-menu">
                             <form class="form-horizontal" role="form">
                                 <div class="form-group">
                                     <label for='{{ filter_price.min_price }}'></label>
@@ -47,15 +47,19 @@
 
 <div class="row row-cols-1 row-cols-md-2" >
 {% for person in people %}
-  <div class="col mb-4">
+  <div class="col-4 mb-4">
     <div class="card mb-4 shadow-sm">
-      <img src="{{ person.photo.url }}" class="card-img-top" alt="Загрузка фото">
+        {% if person.photo %}
+            <img src="{{ person.photo.url }}" class="card-img-top" alt="Загрузка фото">
+        {% else %}
+            <p><img src="{% static "img/static_avatar.png" %}" class="card-img-top" alt="Загрузка фото"/></p>
+        {% endif %}
       <div class="card-body" >
         <h5 class="card-title">{{ person.first_name}} {{person.last_name }}</h5>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Цена: {{ person.price }}</li>
-            <li class="list-group-item">Организация: {{ person.name_organization }}</li>
-            <li class="list-group-item">Адрес: {{ person.address }}</li>
+            <li class="list-group-item"><b>Цена:</b> {{ person.price }}</li>
+            <li class="list-group-item"><b>Контактная информация:</b> {{ person.contact_details }}</li>
+            <li class="list-group-item"><b>Адрес:</b> {{ person.address }}</li>
             <li class="list-group-item"><a href="{{ person.get_absolute_url }}" class="btn btn-warning">Подробнее</a></li>
         </ul>
       </div>

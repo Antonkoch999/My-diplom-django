@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Registration confirmation{% endblock %}
+{% block content %}
+    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="text-center col-xs-12 mr-1">
+                <h3 >Если вы зарегистрируетесь, ваш профиль автоматически добавится в общую базу поиска мастреров.</h3>
+            </div>
+            <div class="text-center col-xs-12 mr-1 pt-1" style="width: 239px">
+                <a class="btn btn-lg btn-warning btn-block" href="{% url 'homepage:register' %}">Зарегистрироваться</a>
+            </div>
+            <div class="text-center col-xs-12 pt-1" style="width: 239px">
+                <a class="btn btn-lg btn-warning btn-block" href="{% url "homepage:start_page" %}">Вернуться на главную</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

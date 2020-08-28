@@ -1,49 +1,57 @@
 {% extends "base.html" %}
-
-{% block title %} {{ profile.first_name|add:profile.last_name }} {% endblock %}
+{% load static %}
+{% block title %} {{ profile.first_name |add:profile.last_name }} {% endblock %}
 {% block content %}
 <div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="text-center col-xs-12" style="margin-top: 30px;">
+            <a class="btn btn-lg btn-warning btn-block" href="{% url 'homepage:find_master' %}">Вернуться к поиску</a>
+        </div>
+        <div class="col-4"></div>
+    </div>
     <div class="row">
         <div class="col-3 pt-5">
             {% if profile.photo %}
                 <p><img src="{{ profile.photo.url }}" alt="alt text" width="250" height="250" class="round"></p>
             {% else %}
-                <p>Not Photo</p>
+                <p><img src="{% static "img/static_avatar.png" %}" alt="alt text" width="250" height="250" class="round"/></p>
              {% endif %}
         </div>
         <div class="col-4 pt-5">
-            <p>Имя и фамилия:{{ profile.first_name }} {{ profile.last_name }}</p>
-            <p>Название организации: {{ profile.name_organization }}</p>
-            <p>Вид услуги: {{ profile.type_service }}</p>
-            <p>Цена: {{ profile.price }}</p>
-            <p>Адрес оказания услуг: {{ profile.address }}</p>
-            <p>Ссылка инстаграмм: {{ profile.link_to_instagram}}</p>
-            <p>Контактные данные: {{ profile.contact_details}}</p>
-            <p>{{ average }}/5</p>
+            <p><b>Имя и фамилия:</b> {{ profile.first_name }} {{ profile.last_name }}</p>
+            <p><b>Название организации:</b> {{ profile.name_organization }}</p>
+            <p><b>Вид услуги:</b> {{ profile.type_service }}</p>
+            <p><b>Цена:</b> {{ profile.price }}</p>
+            <p><b>Адрес оказания услуг:</b> {{ profile.address }}</p>
+            <p><b>Ссылка инстаграмм:</b> {{ profile.link_to_instagram}}</p>
+            <p><b>Контактные данные:</b> {{ profile.contact_details}}</p>
+            <p><b>Оценка:</b> {{ average }}/5</p>
         </div>
         <div class="col-5 pt-5">
             <form action="." method="post" enctype="multipart/form-data">
                 {% csrf_token %}
+                {{ comment_form.errors }}
                 <div class="container">
-                    <p>Оставить комментарий</p>
+                    <p><b>Оставить комментарий</b></p>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <p><label for='{{ comment_form.name }}'></label>
-                                <input type="text" class="form-control"  placeholder="Name" name="name"/></p>
+                                <input type="text" class="form-control"  placeholder="Имя" name="name"/></p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <p><label for='{{ comment_form.email }}'></label>
-                                <input type="email" class="form-control"  placeholder="Email" name="email"/></p>
+                                <input type="email" class="form-control"  placeholder="Email" name="email" required/></p>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12">
                         <div class="form-group">
                             <p><label for='{{ comment_form.body }}'></label>
-                            <input type="text" class="form-control" style="height: 100px" placeholder="Comment" name="body"/></p>
+                            <input type="text" class="form-control" style="height: 100px" placeholder="Ваш комментарий" required name="body"/></p>
                         </div>
                     </div>
                     <div class="row">
@@ -59,7 +67,7 @@
                         </div>
                     </div>
                     <div class="text-center col-xs-12">
-                        <input type="submit" class="btn btn-lg btn-warning btn-block" value="Отправиль комментарий" />
+                        <input type="submit" class="btn btn-lg btn-warning btn-block" value="Отправить комментарий" />
                     </div>
                 </div>
             </form>
@@ -83,12 +91,12 @@
                                 <span class="date">{{ comment.created }}</span>
                             </div>
                         </div>
-                        <div class="media-text text-justify">{{ comment.body }}</div>
+                        <div class="media-text text-justify">{{ comment.body }}</div><br>
                         <div class="media-text text-justify">
                             {% if comment.rating == None %}
-                            <p>Оценки нет</p>
+                            <h6>Оценки нет</h6>
                             {% else %}
-                            <p>Оценка: {{ comment.rating }}</p>
+                            <h6>Оценка: {{ comment.rating }}</h6>
                             {% endif %}
                         </div>
                     </div>

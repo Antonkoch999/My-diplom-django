@@ -10,8 +10,10 @@
     <link href="{% static "styles.css" %}" rel="stylesheet">
 </head>
 <body>
-<div class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 bd-black border-bottom shadow-sm">
-  <h5 class="my-0 mr-md-auto font-weight-normal">Хорошее приложение</h5>
+{% block menu %}
+<div class="fixed-top d-flex flex-column flex-md-row align-items-center px-md-4 bd-black border-bottom shadow-sm">
+    <a class="text-dark m-1 my-0 mr-md-auto font-weight-normal" href="{% url "homepage:start_page" %}">Хорошее приложение</a>
+{#  <h5 class="my-0 mr-md-auto font-weight-normal">Хорошее приложение</h5>#}
   <nav class="my-2 my-md-0 mr-md-3">
     <a class="text-dark m-1" href="{% url "homepage:start_page" %}">Главная</a>
     <a class="text-dark m-1" href="#">Обучение</a>
@@ -21,10 +23,11 @@
         <a class="text-dark m-1" href="{% url "homepage:logout" %}">Выйти</a>
     {% else %}
         <a class="btn btn-outline-dark p-1 m-1" href="{% url 'homepage:login' %}">Вход</a>
-        <a class="btn btn-outline-dark p-1" href="{% url 'homepage:register' %}">Регистрация</a><br>
+        <a class="btn btn-outline-dark p-1" href="{% url 'homepage:registration_confirmation' %}">Регистрация</a><br>
     {% endif %}
   </nav>
-</div>
+</div><br>
+{% endblock %}
 {% block content %}
 {% endblock %}
 </body>

@@ -1,8 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}Welcome{% endblock %}
-
+{% block title %}Registration confirmation{% endblock %}
 {% block content %}
-    <h1>Welcome {{ new_user.first_name }}!</h1>
-    <p>Your account has been successfully created. Now you can <a href="{% url "homepage:login" %}">log in</a>.</p>
+    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="text-center col-12 mr-1">
+                <h3 >Здравствуйте {{ new_user.username }}! Вы зарегистрировались. Войдите в систему:</h3>
+            </div><br>
+            <div class="text-center col-xs-12 mr-1">
+                <a class="btn btn-lg btn-warning btn-block" href="{% url 'homepage:login' %}">Войти</a>
+            </div>
+            <div class="text-center col-xs-12">
+                <a class="btn btn-lg btn-warning btn-block" href="{% url "homepage:start_page" %}">Вернуться на главную</a>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

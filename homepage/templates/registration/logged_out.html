@@ -1,8 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}LogOut{% endblock %}
-
+{% block title %}Registration confirmation{% endblock %}
 {% block content %}
     <br>
-    <h3 class="text-center">Вы вышли из профиля</h3>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="text-center col-12 mr-1">
+                <h1>Вы вышли из профиля</h1>
+            </div><br>
+            <div class="text-center col-xs-12 mr-1">
+                <a class="btn btn-lg btn-warning btn-block" href="{% url 'homepage:start_page' %}">На главную</a>
+            </div>
+            <div class="text-center col-xs-12">
+                <a class="btn btn-lg btn-warning btn-block" href="{% url "homepage:login" %}">Войти</a>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

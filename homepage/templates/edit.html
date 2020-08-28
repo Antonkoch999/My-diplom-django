@@ -17,20 +17,20 @@
                 </div>
                 <div class="col-xs-12">
                     <div class="custom-file pb-5">
-                            <p><label class="custom-file-label" for='{{ profile_form.photo }}'>Добавить файл</label>
-                            <input type="file" class="custom-file-input" accept="image/*" name="photo"/></p>
+                        <p><label class="custom-file-label" for='id_photo'>Добавить фотографию</label>
+                            <input type="file" class="custom-file-input" accept="image/*" name="photo"  id="id_photo"/></p>
                     </div>
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
                         <p><label for='{{ profile_form.first_name }}'></label>
-                            <input type="text" class="form-control" placeholder="Введите имя" name="first_name" value='{{ user.profileuser.first_name }}'/></p>
+                            <input type="text" class="form-control" placeholder="Введите имя" name="first_name" required value='{{ user.profileuser.first_name }}'/></p>
                     </div>
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
                         <p><label for='{{ profile_form.last_name }}'></label>
-                            <input type="text" class="form-control" placeholder="Введите фамилию" name="last_name" value='{{ user.profileuser.last_name }}'/></p>
+                            <input type="text" class="form-control" placeholder="Введите фамилию" name="last_name" required value='{{ user.profileuser.last_name }}'/></p>
                     </div>
                 </div>
                 <div class="col-xs-12">
@@ -48,13 +48,17 @@
                 <div class="col-xs-12">
                     <div class="form-group">
                         <p><label for='{{ profile_form.price }}'></label>
-                            <input type="text" class="form-control" placeholder="Введите цену базового покрытия" name="price" value='{{ user.profileuser.price }}'/></p>
+                            {% if user.profileuser.price == None %}
+                                <input type="number" class="form-control" placeholder="Введите цену базового покрытия BYN" required name="price"/></p>
+                            {% else %}
+                                <input type="number" class="form-control" placeholder="Введите цену базового покрытия" name="price" required value='{{ user.profileuser.price }}'/></p>
+                            {% endif %}
                     </div>
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
                         <p><label for='{{ profile_form.address }}'></label>
-                            <input type="text" class="form-control" placeholder="Введите адресс" name="address" value='{{ user.profileuser.address }}'/></p>
+                            <input type="text" class="form-control" placeholder="Введите адресс" name="address" required value='{{ user.profileuser.address }}'/></p>
                     </div>
                 </div>
                 <div class="col-xs-12">
